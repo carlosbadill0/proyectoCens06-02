@@ -1,0 +1,47 @@
+<form class="form" role="form" autocomplete="off" th:object="${empresaForm}" th:action="${editMode} ?@{/editEmpresa}:@{/empresaForm}" method="post">
+    <input class="form-control" type=hidden th:field="${empresaForm.id}" th:if="${editMode}">
+    <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Nombre Empresa</label>
+        <div class="col-lg-9">
+            <input class="form-control" type="text" th:field="${empresaForm.nombre}" >
+                   <div class="alert-danger" th:if="${#fields.hasErrors('nombre')}"th:errors="*{nombre}">Nombre Incorrecto</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Contacto</label>
+        <div class="col-lg-9">
+            <input class="form-control" type="text" th:field="${empresaForm.contacto}" >
+                  <div class="alert-danger" th:if="${#fields.hasErrors('contacto')}"th:errors="*{contacto}">Contacto Incorrecto</div>
+
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+        <div class="col-lg-9">
+            <input class="form-control" type="email" th:field="${empresaForm.email}">
+                  <div class="alert-danger" th:if="${#fields.hasErrors('email')}"th:errors="*{email}">Email Incorrecto</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Direccion</label>
+        <div class="col-lg-9">
+            <input class="form-control" type="text" th:field="${empresaForm.direccion}">
+                  <div class="alert-danger" th:if="${#fields.hasErrors('direccion')}"th:errors="*{direccion}">Direccion Incorrecta</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-lg-3 col-form-label form-control-label">Nota Empresa</label>
+        <div class="col-lg-9">
+            <input class="form-control" type="text" th:field="${empresaForm.nota}">
+                  <div class="alert-danger" th:if="${#fields.hasErrors('nota')}"th:errors="*{nota}">Nota Incorrecta</div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-12 text-center">
+            <a class="btn btn-secondary"  th:href="@{'/empresaForm/cancel'}">Cancel</a>
+            <input type="submit" class="btn btn-primary"
+                value="Save Changes" th:value="${editMode}?'Guardar Empresa':'Crear Empresa'">
+        </div>
+    </div>
+    <div class="alert alert-danger text-center mx-auto font-size-lg" th:if="${formErrorMessage}"th:text="${formErrorMessage}">Error Message</div>
+</form>

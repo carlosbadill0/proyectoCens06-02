@@ -1,0 +1,42 @@
+<div class="table-responsive">
+	<table id="empresaList" class="table table-bordered table-hover table-striped">
+		<thead class="thead-light">
+		<tr>
+			<th scope="col">Id Empresa</th>
+			<th scope="col">Nombre Empresa</th>
+			<th scope="col">Contacto Empresa</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Direccion</th>
+			<th scope="col">Nota Empresa</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="empresa: ${empresaList}">
+			<td th:text="${empresa.id}"></td>
+			<td th:text="${empresa.nombre}"></td>
+			<td th:text="${empresa.contacto}"></td>
+			<td th:text="${empresa.email}"></td>
+			<td th:text="${empresa.direccion}"></td>
+			<td th:text="${empresa.nota}"></td>
+			<td>
+				<a href="#" th:href="@{'/editEmpresa/'+ ${empresa.id}}"><i class="fas fa-edit"></i></a>
+				<a href="#" th:onclick="'javascript:confirmDelete(\''+ ${empresa.id} +'\');'"><i class="fas fa-user-times"></i></a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<div class="alert alert-danger text-center mx-auto font-size-lg" th:if="${listErrorMessage}"th:text="${listErrorMessage}">Error Message</div>
+</div>
+
+<script type="text/javascript">
+function confirmDelete(id){
+	$('#deleteModal').modal('show');
+	$("#userIdHiddenInput").val(id);
+}
+
+function deleteEmpresa(){
+	var id = $("#userIdHiddenInput").val();
+    window.location = "deleteEmpresa/" + id;
+}
+</script>
